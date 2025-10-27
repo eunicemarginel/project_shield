@@ -132,8 +132,15 @@ export default function AgencyPage() {
         "Team Player",
     ];
 
-    function markCompleted(id: any): void {
-        throw new Error("Function not implemented.");
+    function markCompleted(id: number) {
+        const job = jobs.find((j) => j.id === id);
+        if (!job) return;
+
+        // mark job as completed
+        updateJob(id, { status: "Completed" });
+
+        // refresh local state
+        setJobs(getJobs());
     }
 
     return (
